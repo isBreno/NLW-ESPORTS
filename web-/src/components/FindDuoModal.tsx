@@ -57,7 +57,7 @@ export const FindDuoModal = ({ children, game }: GameAdProps) => {
         {children}
         <Dialog.Portal>
           <Dialog.Overlay className="bg-black/60 inset-0 fixed" />
-          <Dialog.Content className="fixed top-[162px] left-1/2 -translate-x-1/2 bg-[#2A2634] py-8 px-10 text-white rounded-lg w-[420px] sm:w-[600px] shadow-black/25 shadow-lg h-[480px] overflow-y-scroll scrollbar-thin scrollbar-thumb-violet-500 scrollbar-track-stone-900">
+          <Dialog.Content className="fixed top-[50px] left-1/2 -translate-x-1/2 bg-[#2A2634] py-8 px-10 text-white rounded-lg w-[420px] sm:w-[600px] shadow-black/25 shadow-lg h-[480px] overflow-y-scroll scrollbar-thin scrollbar-thumb-violet-500 scrollbar-track-stone-900">
             <Dialog.Title className="text-2xl font-black mb-8 flex items-center justify-between">
               {game.title}
               <Dialog.Close>

@@ -84,7 +84,7 @@ export const DialogModal = ({ children }: DialogButton) => {
         {children}
         <Dialog.Portal>
           <Dialog.Overlay className="bg-black/60 inset-0 fixed" />
-          <Dialog.Content className="fixed top-[162px] left-1/2 -translate-x-1/2 bg-[#2A2634] py-8 px-10 text-white rounded-lg w-[490px] sm:w-[600px] shadow-black/25 shadow-lg">
+          <Dialog.Content className="fixed top-[50px] left-1/2 -translate-x-1/2 bg-[#2A2634] py-8 px-10 text-white rounded-lg w-[490px] sm:w-[600px] shadow-black/25 shadow-lg">
             <Dialog.Title className="text-3xl font-black mb-8">
               Publique um anúncio
             </Dialog.Title>

@@ -27,48 +27,41 @@ function App() {
     bannerUrl: "",
     title: "",
   });
-
-  const [sliderRef, instanceRef] = useKeenSlider(
-    {
-      loop: true,
-      breakpoints: {
-        "(min-width: 200px)": {
-          slides: { perView: 2.2, spacing: 5 },
-        },
-        "(min-width: 400px)": {
-          slides: { perView: 2.5, spacing: 5 },
-        },
-        "(min-width: 600px)": {
-          slides: { perView: 3.5, spacing: 5 },
-        },
-        "(min-width: 800px)": {
-          slides: { perView: 4.5, spacing: 5 },
-        },
-        "(min-width: 1000px)": {
-          slides: { perView: 5.5, spacing: 10 },
-        },
-        "(min-width: 1200px)": {
-          slides: { perView: 6.5, spacing: 10 },
-        },
+  const sliderOptions = {
+    breakpoints: {
+      "(min-width: 200px)": {
+        slides: { perView: 2.5, spacing: 5 },
       },
-      mode: "free",
-      slides: { origin: "center", perView: 5.5, spacing: 10 },
-      // range: {
-      //     min: 1,
-      //     max: 100,
-      //     align: true,
-      // },
+      "(min-width: 400px)": {
+        slides: { perView: 2.5, spacing: 5 },
+      },
+      "(min-width: 600px)": {
+        slides: { perView: 3.5, spacing: 5 },
+      },
+      "(min-width: 800px)": {
+        slides: { perView: 4.5, spacing: 5 },
+      },
+      "(min-width: 1000px)": {
+        slides: { perView: 5.5, spacing: 10 },
+      },
+      "(min-width: 1200px)": {
+        slides: { perView: 6.5, spacing: 10 },
+      },
     },
-    [
-      // add plugins here
-    ]
-  );
+  };
+  const [sliderRef, internalSlider] = useKeenSlider(sliderOptions);
 
   useEffect(() => {
     axios
       .get("http://localhost:3333/games")
       .then((resp) => setGames(resp.data));
   }, []);
+
+  useEffect(() => {
+    internalSlider.current?.update({
+      ...sliderOptions,
+    });
+  }, [sliderRef, sliderOptions]);
 
   return (
     <div className="max-w-[1344px] mx-auto flex items-center flex-col ">
@@ -82,19 +75,24 @@ function App() {
         está aqui.
       </h1>
 
-      <div ref={sliderRef} className="keen-slider mt-16">
-        <FindDuoModal game={selectedGame}>
-          {games?.map((game) => (
-            <div className="keen-slider__slide">
-              <GameBanner
-                game={game}
-                key={game.id}
-                onClick={() => setSelectedGame(game)}
-              />
-            </div>
-          ))}
-        </FindDuoModal>
-      </div>
+      {games && (
+        <div
+          ref={sliderRef}
+          className="md:keen-slider sm:keen-slider lg:keen-slider keen-slider mt-16 transition-all"
+        >
+          <FindDuoModal game={selectedGame}>
+            {games?.map((game) => (
+              <div className="keen-slider__slide sm:keen-slider__slide md:keen-slider__slide">
+                <GameBanner
+                  game={game}
+                  key={game.id}
+                  onClick={() => setSelectedGame(game)}
+                />
+              </div>
+            ))}
+          </FindDuoModal>
+        </div>
+      )}
 
       <DialogModal>
         <CreateAdBanner />
