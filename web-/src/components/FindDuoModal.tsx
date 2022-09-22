@@ -44,7 +44,7 @@ export const FindDuoModal = ({ children, game }: GameAdProps) => {
   useEffect(() => {
     if (game.id) {
       api
-        .get(`http://localhost:3333/games/${game.id}/ads`)
+        .get(`/games/${game.id}/ads`)
         .then((resp) => {
           setAds(resp.data);
         })
