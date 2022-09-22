@@ -5,7 +5,7 @@ import { PublishButton } from "./PublishAnnounce";
 
 // Imports
 
-export const CreateAdBanner = () => {
+export const CreateAnnounceBanner = () => {
   return (
     <>
       <div className="pt-1 bg-nlw_gradient self-stretch rounded-lg mt-8 overflow-hidden">

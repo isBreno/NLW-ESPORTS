@@ -16,7 +16,7 @@ interface AdProps {
   discord: string;
 }
 
-export const AdBox = ({ ad }: { ad: AdProps }) => {
+export const AnnounceBox = ({ ad }: { ad: AdProps }) => {
   function handleCopyDiscord() {
     navigator.clipboard.writeText(ad.discord);
     toast.success("Discord copiado com sucesso!", {

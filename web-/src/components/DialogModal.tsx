@@ -13,6 +13,7 @@ import {
 } from "react";
 import axios from "axios";
 import * as ToggleGroup from "@radix-ui/react-toggle-group";
+import { api } from "../services/axios";
 
 // Imports
 
@@ -29,9 +30,7 @@ export const DialogModal = ({ children }: DialogButton) => {
   const [isOpen, setIsOpen] = useState<boolean>(false);
 
   useEffect(() => {
-    axios
-      .get("http://localhost:3333/games")
-      .then((resp) => setGames(resp.data));
+    api.get("/games").then((resp) => setGames(resp.data));
   }, []);
 
   async function handleCreateAd(e: FormEvent) {
@@ -40,7 +39,7 @@ export const DialogModal = ({ children }: DialogButton) => {
     const formData = new FormData(e.target as HTMLFormElement);
     const data = Object.fromEntries(formData);
 
-    await axios
+    await api
       .post(`http://localhost:3333/games/${data.game}/ads`, {
         name: data.nickname,
         yearsPlaying: Number(data.yearsPlaying),
@@ -77,9 +76,6 @@ export const DialogModal = ({ children }: DialogButton) => {
 
   return (
     <>
-      <div className="absolute right-10 ">
-        <ToastContainer />
-      </div>
       <Dialog.Root open={isOpen} onOpenChange={setIsOpen}>
         {children}
         <Dialog.Portal>

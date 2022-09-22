@@ -4,8 +4,9 @@ import axios from "axios";
 import { ArchiveBox, X } from "phosphor-react";
 import { useContext, useEffect, useState } from "react";
 import { ToastContainer } from "react-toastify";
-import { AdBox } from "./AdBox";
-import { CreateAdBanner } from "./CreateAdBanner";
+import { api } from "../services/axios";
+import { AnnounceBox } from "./AnnounceBox";
+import { CreateAnnounceBanner } from "./CreateAnnounceBanner";
 import { DialogModal } from "./DialogModal";
 import { PublishButton } from "./PublishAnnounce";
 
@@ -42,7 +43,7 @@ export const FindDuoModal = ({ children, game }: GameAdProps) => {
 
   useEffect(() => {
     if (game.id) {
-      axios
+      api
         .get(`http://localhost:3333/games/${game.id}/ads`)
         .then((resp) => {
           setAds(resp.data);
@@ -57,7 +58,7 @@ export const FindDuoModal = ({ children, game }: GameAdProps) => {
         {children}
         <Dialog.Portal>
           <Dialog.Overlay className="bg-black/60 inset-0 fixed" />
-          <Dialog.Content className="fixed top-[50px] left-1/2 -translate-x-1/2 bg-[#2A2634] py-8 px-10 text-white rounded-lg w-[98%] sm:w-[600px] shadow-black/25 shadow-lg h-[480px] overflow-y-scroll scrollbar-thin scrollbar-thumb-violet-500 scrollbar-track-stone-900">
+          <Dialog.Content className="fixed top-[25px] left-1/2 -translate-x-1/2 bg-[#2A2634] py-8 px-10 text-white rounded-lg w-[98%] sm:w-[600px] shadow-black/25 shadow-lg h-[480px] overflow-y-scroll scrollbar-thin scrollbar-thumb-violet-500 scrollbar-track-stone-900">
             <Dialog.Title className="text-2xl font-black mb-8 flex items-center justify-between">
               {game.title}
               <Dialog.Close>
@@ -68,7 +69,7 @@ export const FindDuoModal = ({ children, game }: GameAdProps) => {
             {ads.length > 0 ? (
               <div className="flex flex-col gap-12">
                 {ads.map((ad) => (
-                  <AdBox ad={ad} key={ad.id} />
+                  <AnnounceBox ad={ad} key={ad.id} />
                 ))}
               </div>
             ) : (
