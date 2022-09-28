@@ -1,41 +1,16 @@
 // Imports
 import * as Dialog from "@radix-ui/react-dialog";
-import axios from "axios";
-import { ArchiveBox, X } from "phosphor-react";
-import { useContext, useEffect, useState } from "react";
-import { ToastContainer } from "react-toastify";
+import ArchiveBox from "phosphor-react/src/icons/ArchiveBox";
+import X from "phosphor-react/src/icons/X";
+import { useEffect, useState } from "react";
 import { api } from "../services/axios";
+import { AdProps, GameAdProps } from "../types/GameTypes";
 import { AnnounceBox } from "./AnnounceBox";
-import { CreateAnnounceBanner } from "./CreateAnnounceBanner";
 import { DialogModal } from "./DialogModal";
 import { PublishButton } from "./PublishAnnounce";
+import React from "react";
 
 // Imports
-
-interface GameProps {
-  id: string;
-  title: string;
-  bannerUrl: string;
-  _count: {
-    ads: number;
-  };
-}
-
-interface GameAdProps {
-  game: GameProps;
-  children: React.ReactNode;
-}
-
-interface AdProps {
-  id: string;
-  name: string;
-  weekDays: number[];
-  useVoiceChannel: boolean;
-  hourStart: string;
-  hourEnd: string;
-  yearsPlaying: number;
-  discord: string;
-}
 
 export const FindDuoModal = ({ children, game }: GameAdProps) => {
   const [isOpen, setOpen] = useState(false);

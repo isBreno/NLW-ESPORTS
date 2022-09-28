@@ -1,16 +1,10 @@
 // Imports
 import * as Dialog from "@radix-ui/react-dialog";
-import { ButtonHTMLAttributes, MouseEvent, useContext, useState } from "react";
-// Imports
+import { ButtonHTMLAttributes } from "react";
+import React from "react";
+import { GameProps } from "../types/GameTypes";
 
-interface GameProps {
-  id: string;
-  title: string;
-  bannerUrl: string;
-  _count: {
-    ads: number;
-  };
-}
+// Imports
 
 interface GameBannerProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   game: GameProps;
@@ -23,7 +17,12 @@ export const GameBanner = (props: GameBannerProps) => {
         className="relative rounded-lg overflow-hidden"
         {...props}
       >
-        <img src={props.game.bannerUrl} alt="Game 1" />
+        <img
+          src={props.game.bannerUrl}
+          alt={props.game.title}
+          width={285}
+          height={300}
+        />
 
         <div className="w-full pt-16 pb-4 px-4 bg-game_shadow_gradient absolute bottom-0 text-left">
           <strong className="font-bold text-white block">

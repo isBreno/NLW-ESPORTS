@@ -1,20 +1,11 @@
 // Imports
 
-import { GameController } from "phosphor-react";
+import GameController from "phosphor-react/src/icons/GameController";
 import { toast } from "react-toastify";
+import React from "react";
+import { AdProps } from "../types/GameTypes";
 
 // Imports
-
-interface AdProps {
-  id: string;
-  name: string;
-  weekDays: number[];
-  useVoiceChannel: boolean;
-  hourStart: string;
-  hourEnd: string;
-  yearsPlaying: number;
-  discord: string;
-}
 
 export const AnnounceBox = ({ ad }: { ad: AdProps }) => {
   function handleCopyDiscord() {
