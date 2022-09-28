@@ -1,7 +1,8 @@
 // Imports
 import * as Dialog from "@radix-ui/react-dialog";
-import { MagnifyingGlassPlus } from "phosphor-react";
+import MagnifyingGlassPlus from "phosphor-react/src/icons/MagnifyingGlassPlus";
 import { ButtonHTMLAttributes } from "react";
+import React from "react";
 
 // Imports
 

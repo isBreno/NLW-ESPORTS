@@ -1,19 +1,14 @@
 import * as Dialog from "@radix-ui/react-dialog";
-import { Check, CheckCircle, GameController } from "phosphor-react";
+import Check from "phosphor-react/src/icons/Check";
+import GameController from "phosphor-react/src/icons/GameController";
 import { ModalInput } from "./ModalInputs";
 import * as Checkbox from "@radix-ui/react-checkbox";
-import { toast, ToastContainer } from "react-toastify";
+import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import {
-  BaseSyntheticEvent,
-  FormEvent,
-  SyntheticEvent,
-  useEffect,
-  useState,
-} from "react";
-import axios from "axios";
+import { FormEvent, useEffect, useState } from "react";
 import * as ToggleGroup from "@radix-ui/react-toggle-group";
 import { api } from "../services/axios";
+import React from "react";
 
 // Imports
 
