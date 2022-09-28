@@ -1,29 +1,21 @@
-import "./styles/main.css";
 import logoImage from "./assets/logo.svg";
 import { GameBanner } from "./components/GameBanner";
-import axios from "axios";
 import { useEffect, useState } from "react";
 import { CreateAnnounceBanner } from "./components/CreateAnnounceBanner";
 import { DialogModal } from "./components/DialogModal";
 import { FindDuoModal } from "./components/FindDuoModal";
 import { useKeenSlider } from "keen-slider/react";
 import "keen-slider/keen-slider.min.css";
-import { Code } from "phosphor-react";
+import Code from "phosphor-react/src/icons/Code";
+import Skeleton from "react-loading-skeleton";
+import "react-loading-skeleton/dist/skeleton.css";
 import { ToastContainer } from "react-toastify";
-import { Spinner } from "./components/Spinner";
 import { api } from "./services/axios";
-
-interface GameProps {
-  id: string;
-  title: string;
-  bannerUrl: string;
-  _count: {
-    ads: number;
-  };
-}
+import React from "react";
+import { GameProps } from "./types/GameTypes";
 
 function App() {
-  const [games, setGames] = useState<GameProps[]>([]);
+  const [games, setGames] = useState<GameProps[] | null>(null);
   const [selectedGame, setSelectedGame] = useState<GameProps>({
     id: "",
     _count: { ads: 0 },
@@ -71,7 +63,13 @@ function App() {
         <ToastContainer />
       </div>
       <div className="max-w-[1344px] mx-auto flex items-center flex-col ">
-        <img src={logoImage} className="mt-20" />
+        <img
+          src={logoImage}
+          alt="NLW ESPORTS"
+          height={200}
+          width={264}
+          className="mt-20"
+        />
         <h1 className="sm:text-6xl text-4xl text-white font-black mt-20 clam">
           Seu{" "}
           <span className="bg-nlw_gradient bg-clip-text text-transparent">
@@ -86,7 +84,7 @@ function App() {
           >
             <FindDuoModal game={selectedGame}>
               {games?.map((game) => (
-                <div className="keen-slider__slide sm:keen-slider__slide md:keen-slider__slide">
+                <div className="keen-slider__slide" key={game.id}>
                   <GameBanner
                     game={game}
                     key={game.id}
@@ -97,7 +95,12 @@ function App() {
             </FindDuoModal>
           </div>
         ) : (
-          <Spinner />
+          <Skeleton
+            width={180}
+            height={264}
+            count={7}
+            containerClassName="flex justify-between mt-16 w-full rounded-lg"
+          />
         )}
         <DialogModal>
           <CreateAnnounceBanner />
