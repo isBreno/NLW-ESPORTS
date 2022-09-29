@@ -20,7 +20,7 @@ interface DialogButton {
 
 export const DialogModal = ({ children }: DialogButton) => {
   const [games, setGames] = useState<{ title: string; id: string }[]>([]);
-  const [weekDays, setWeekDays] = useState<string[]>([]);
+  const [weekDays, setWeekDays] = useState<string[]>(["0", "6"]);
   const [useVoiceChannel, setUseVoiceChannel] = useState<boolean>(false);
   const [isOpen, setIsOpen] = useState<boolean>(false);
 
@@ -35,7 +35,7 @@ export const DialogModal = ({ children }: DialogButton) => {
     const data = Object.fromEntries(formData);
 
     await api
-      .post(`http://localhost:3333/games/${data.game}/ads`, {
+      .post(`/games/${data.game}/ads`, {
         name: data.nickname,
         yearsPlaying: Number(data.yearsPlaying),
         discord: data.discord,
@@ -85,6 +85,7 @@ export const DialogModal = ({ children }: DialogButton) => {
                 id="game"
                 name="game"
                 className="bg-zinc-900 py-4 px-3 mt-2 w-full border-none rounded-md outline-none placeholder:text-zinc-500 text-sm appearance-none"
+                required
               >
                 <option disabled value="">
                   Selecione o game que deseja jogar
@@ -102,6 +103,7 @@ export const DialogModal = ({ children }: DialogButton) => {
                 id="nickname"
                 name="nickname"
                 placeholder="Como te chamam dentro do jogo?"
+                required
               />
               <div className="flex gap-6">
                 <ModalInput
@@ -113,6 +115,7 @@ export const DialogModal = ({ children }: DialogButton) => {
                   min={0}
                   max={100}
                   name="yearsPlaying"
+                  required
                 />
                 <ModalInput
                   className=" w-full bg-zinc-900 py-4 px-3 mt-2 border-none rounded-md outline-none placeholder:text-zinc-500 text-sm"
@@ -120,6 +123,7 @@ export const DialogModal = ({ children }: DialogButton) => {
                   id="discord"
                   placeholder="Usuário#0000"
                   name="discord"
+                  required
                 />
               </div>
               <div className="flex gap-6 justify-between">
@@ -205,6 +209,7 @@ export const DialogModal = ({ children }: DialogButton) => {
                       name="hourStart"
                       className="bg-zinc-900 py-4 px-3 mt-2 w-full border-none rounded-md outline-none placeholder:text-zinc-500 text-sm"
                       placeholder="De"
+                      required
                     />
                     <input
                       className="timepicker bg-zinc-900 py-4 px-3 mt-2 w-full border-none rounded-md outline-none placeholder:text-zinc-500 text-sm"
@@ -212,6 +217,7 @@ export const DialogModal = ({ children }: DialogButton) => {
                       id="hourEnd"
                       name="hourEnd"
                       placeholder="Até"
+                      required
                     />
                   </div>
                 </div>
